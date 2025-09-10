@@ -1,0 +1,63 @@
+{
+  "nav": {
+    "home": "Home",
+    "menu": "Menu",
+    "location": "Waar we zitten",
+    "about": "Over Ons",
+    "contact": "Contact",
+    "reserve": "Reserveren"
+  },
+  "reservation": {
+    "title": "Maak een Reservering",
+    "description": "Voor een persoonlijke reservering kunt u ons telefonisch bereiken. Onze medewerkers staan klaar om u te helpen met al uw wensen.",
+    "onlineBooking": "Online Reserveren"
+  },
+  "hero": {
+    "title": "Manhattan\nFood & Drinks",
+    "tagline": "",
+    "cta": "Reserveer een Tafel"
+  },
+  "about": {
+    "title": "Ons Verhaal",
+    "content1": "In het hart van Manhattan creëren wij buitengewone culinaire ervaringen die hedendaagse innovatie combineren met tijdloze elegantie. Ons gepassioneerde team van culinaire artiesten creëert onvergetelijke momenten door uitzonderlijke gerechten en onberispelijke service.",
+    "content2": "Elk gerecht vertelt een verhaal, elk ingrediënt zorgvuldig geselecteerd, elke presentatie doordacht samengesteld om uw culinaire ervaring naar nieuwe hoogten te tillen."
+  },
+  "menu": {
+    "title": "Menu Hoogtepunten",
+    "appetizers": "Voorgerechten",
+    "mainCourse": "Hoofdgerechten",
+    "dessert": "Desserts",
+    "dishes": {
+      "foieGras": "Truffel-geïnfuseerde Foie Gras",
+      "wagyu": "Wagyu Ossenhaas",
+      "souffle": "Goudblad Chocolade Soufflé"
+    }
+  },
+  "contact": {
+    "title": "Maak een Reservering",
+    "form": {
+      "name": "Naam",
+      "email": "E-mail",
+      "date": "Datum",
+      "time": "Tijd selecteren",
+      "submit": "Nu Reserveren"
+    }
+  },
+  "footer": {
+    "location": "Locatie",
+    "hours": "Openingstijden",
+    "contact": "Contact",
+    "schedule": "Dinsdag t/m Zondag: 10:00 - 22:00\nMaandag: Gesloten",
+    "rights": "© {{year}} Manhattan Food & Drinks. Alle rechten voorbehouden."
+  },
+  "languages": {
+    "nl": "Nederlands",
+    "en": "English",
+    "tr": "Türkçe",
+    "ar": "العربية",
+    "es": "Español",
+    "selectLanguage": "Selecteer taal",
+    "close": "Sluiten",
+    "error": "Taal wijzigen mislukt"
+  }
+}

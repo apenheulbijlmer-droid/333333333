@@ -1,0 +1,986 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import url('https://fonts.googleapis.com/css2?family=Gilda+Display&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap');
+
+@layer base {
+  html {
+    font-size: 100%; /* Base font size for rem calculations */
+    scroll-behavior: smooth;
+    overflow-x: hidden;
+    --transition-fast: 200ms;
+    --transition-normal: 300ms;
+    --transition-slow: 500ms;
+    --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+    --ease-out-back: cubic-bezier(0.34, 1.56, 0.64, 1);
+    --gold: #B5995C;
+    --gold-hover: #9A805D;
+    --dark-bg: #1A1A1A;
+    -webkit-text-size-adjust: 100%; /* Prevent automatic text resizing in iOS */
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+      --transition-fast: 0ms;
+      --transition-normal: 0ms;
+      --transition-slow: 0ms;
+    }
+
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+      scroll-behavior: auto !important;
+    }
+  }
+  
+  body {
+    font-family: 'Plus Jakarta Sans', system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+    overflow-x: hidden;
+    font-size: 1rem; /* Base 16px on most browsers */
+    line-height: 1.5;
+    /* Improved touch feedback */
+    -webkit-tap-highlight-color: rgba(181, 153, 92, 0.2);
+  }
+
+  body.language-transition {
+    opacity: 0.5;
+    transition: opacity 0.2s ease-in-out;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Gilda Display', serif;
+    line-height: 1.2;
+  }
+
+  /* Improve focus visibility for keyboard navigation */
+  :focus-visible {
+    outline: 0.125rem solid var(--gold);
+    outline-offset: 0.125rem;
+  }
+
+  /* Fluid typography for responsive text sizing */
+  h1 { 
+    font-size: clamp(2rem, 5vw, 3.5rem); 
+  }
+  
+  h2 { 
+    font-size: clamp(1.5rem, 4vw, 2.5rem); 
+  }
+  
+  h3 { 
+    font-size: clamp(1.25rem, 3vw, 2rem); 
+  }
+  
+  h4 { 
+    font-size: clamp(1.125rem, 2.5vw, 1.75rem); 
+  }
+  
+  p, li, a, button, input, select, textarea {
+    font-size: clamp(0.875rem, 1vw + 0.5rem, 1.125rem);
+  }
+
+  /* Improved image handling */
+  img, svg, video {
+    max-width: 100%;
+    height: auto;
+    display: block;
+  }
+}
+
+.font-serif {
+  font-family: 'Gilda Display', serif;
+}
+
+/* Menu page background animations */
+@keyframes subtleParallax {
+  0% {
+    background-position: center center, center center, 0 0, center center;
+  }
+  100% {
+    background-position: center center, center center, 60px 60px, center center;
+  }
+}
+
+/* Disable parallax on mobile */
+@media (max-width: 768px) {
+  .fixed.inset-0.z-0 {
+    animation: none !important;
+    background-position: center !important;
+  }
+  
+  /* Disable hero section wallpaper animation when scrolling on mobile */
+  .hero-section .slide {
+    transition: opacity 0.8s ease-in-out !important;
+    animation: none !important;
+    transform: none !important;
+  }
+  
+  .hero-section .hero-background {
+    animation: none !important;
+    transform: none !important;
+  }
+}
+
+/* Modern card styles */
+.menu-card {
+  @apply p-6 border border-[rgba(181,153,92,0.4)] rounded-lg backdrop-blur-[8px]
+         bg-[rgba(255,255,255,0.04)] transition-all duration-300 ease-in-out
+         hover:shadow-[0_0_30px_rgba(181,153,92,0.15)]
+         transform hover:-translate-y-1 hover:scale-[1.02] will-change-transform
+         min-h-[120px] w-full;
+  backface-visibility: hidden;
+  animation: cardFadeIn 0.6s ease-out forwards;
+  opacity: 0;
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.menu-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    45deg,
+    rgba(255, 255, 255, 0.05) 0%,
+    rgba(181, 153, 92, 0.05) 50%,
+    rgba(255, 255, 255, 0.05) 100%
+  );
+  opacity: 0;
+  transition: opacity 0.3s ease-in-out;
+}
+
+.menu-card:hover::before {
+  opacity: 1;
+}
+
+@keyframes cardFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(0.625rem);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.menu-card:nth-child(n) {
+  animation-delay: calc(var(--card-index, 0) * 100ms);
+}
+
+.menu-card:hover {
+  border-color: var(--gold);
+  backdrop-filter: blur(12px);
+  background: rgba(255, 255, 255, 0.03);
+  box-shadow: 0 0.5rem 2rem rgba(0, 0, 0, 0.1);
+}
+
+.menu-card .price {
+  @apply text-xl text-[var(--gold)] font-medium tracking-wide;
+  transition: color 0.2s ease-in-out;
+  position: relative;
+  z-index: 1;
+  margin-left: auto;
+  padding-left: 1rem;
+  flex-shrink: 0;
+}
+
+.menu-card:hover .price {
+  color: var(--gold);
+  text-shadow: 0 0 1.25rem rgba(181, 153, 92, 0.3);
+}
+
+.menu-card h3 {
+  @apply text-xl font-medium text-white mb-2;
+  line-height: 1.3;
+}
+
+.menu-card p {
+  @apply text-white/80 text-sm leading-relaxed;
+  margin-bottom: 0;
+}
+
+.menu-card h3,
+.menu-card p {
+  position: relative;
+  z-index: 1;
+}
+
+/* Modern button styles */
+.btn-primary {
+  @apply bg-[var(--gold)] text-black px-4 sm:px-8 py-3 rounded-lg min-h-[3rem]
+         hover:bg-[var(--gold-hover)] transition-all duration-300 ease-in-out
+         transform hover:-translate-y-0.5 hover:shadow-lg
+         focus:outline-none focus:ring-2 focus:ring-[var(--gold)] focus:ring-opacity-50
+         w-full sm:w-auto touch-manipulation;
+  backface-visibility: hidden;
+  transform: translateZ(0);
+}
+
+/* Modern input styles */
+.input-modern {
+  @apply bg-black/50 border border-[var(--gold)] rounded-lg px-4 py-3
+         focus:outline-none focus:ring-2 focus:ring-[var(--gold)] focus:ring-opacity-50
+         transition-all duration-300 ease-in-out backdrop-blur-sm min-h-[3rem]
+         text-base md:text-sm w-full;
+}
+
+/* Page transition animations */
+.page-enter {
+  opacity: 0;
+  transform: translateY(0.625rem);
+}
+
+.page-enter-active {
+  opacity: 1;
+  transform: translateY(0);
+  transition: opacity var(--transition-normal) var(--ease-out-expo),
+              transform var(--transition-normal) var(--ease-out-expo);
+}
+
+.page-exit {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.page-exit-active {
+  opacity: 0;
+  transform: translateY(-0.625rem);
+  transition: opacity var(--transition-normal) var(--ease-out-expo),
+              transform var(--transition-normal) var(--ease-out-expo);
+}
+
+/* Scroll reveal animations */
+.reveal {
+  opacity: 0;
+  transform: translateY(1.875rem);
+  transition: opacity var(--transition-slow) var(--ease-out-expo),
+              transform var(--transition-slow) var(--ease-out-expo);
+  will-change: transform, opacity;
+}
+
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Stagger children animations */
+.stagger-children > * {
+  opacity: 0;
+  transform: translateY(1.25rem);
+}
+
+.stagger-children.visible > * {
+  opacity: 1;
+  transform: translateY(0);
+  transition: opacity var(--transition-normal) var(--ease-out-expo),
+              transform var(--transition-normal) var(--ease-out-expo);
+}
+
+.stagger-children.visible > *:nth-child(1) { transition-delay: 100ms; }
+.stagger-children.visible > *:nth-child(2) { transition-delay: 200ms; }
+.stagger-children.visible > *:nth-child(3) { transition-delay: 300ms; }
+.stagger-children.visible > *:nth-child(4) { transition-delay: 400ms; }
+
+/* Language transition animations */
+.animate-slideIn {
+  animation: slideIn var(--transition-normal) var(--ease-out-back);
+  transform-origin: top center;
+  will-change: transform, opacity;
+}
+
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: scale(0.98) translateY(-0.5rem);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+/* Smooth scroll behavior */
+html {
+  scroll-padding-top: 6.25rem;
+}
+
+@media (max-width: 768px) {
+  html {
+    scroll-padding-top: 5rem;
+  }
+}
+
+/* Enhanced touch interactions */
+@media (hover: none) {
+  .touch-manipulation {
+    touch-action: manipulation;
+    -webkit-tap-highlight-color: transparent;
+  }
+}
+
+/* Modal animations */
+@keyframes modalSlideIn {
+  from {
+    opacity: 0;
+    transform: translateY(-0.5rem) scale(0.98);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@keyframes backdropReveal {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.animate-modalSlideIn {
+  animation: modalSlideIn 400ms cubic-bezier(0.4, 0, 0.2, 1) forwards;
+  will-change: transform, opacity;
+}
+
+.animate-backdropReveal {
+  animation: backdropReveal 400ms cubic-bezier(0.4, 0, 0.2, 1) forwards;
+  will-change: opacity;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-modalSlideIn {
+    animation: none;
+    opacity: 1;
+    transform: none;
+  }
+  
+  .animate-backdropReveal {
+    animation: none;
+    opacity: 1;
+  }
+}
+
+/* Content transition */
+#root {
+  transition: opacity var(--transition-normal) var(--ease-out-expo);
+}
+
+#root.loading {
+  opacity: 0;
+}
+
+/* Mobile menu overlay styles */
+.mobile-menu-overlay {
+  background-color: rgba(0, 0, 0, 0.85);
+  will-change: backdrop-filter, opacity;
+  overscroll-behavior: contain;
+}
+
+.mobile-menu-content {
+  background: linear-gradient(to bottom, rgba(0, 0, 0, 0.98), rgba(0, 0, 0, 0.95));
+  box-shadow: 0 0 2.5rem rgba(181, 153, 92, 0.1);
+  @apply px-4 py-12 sm:px-6 sm:py-16;
+  touch-action: pan-y;
+  overscroll-behavior: contain;
+  -webkit-overflow-scrolling: touch;
+}
+
+.mobile-menu-content::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at center, rgba(181, 153, 92, 0.1) 0%, transparent 70%);
+  z-index: -1;
+}
+
+.shadow-glow {
+  text-shadow: 0 0 1.25rem rgba(181, 153, 92, 0.3);
+}
+
+.title-modern {
+  @apply text-white;
+  font-family: 'Gilda Display', serif;
+  text-shadow: 0.125rem 0.125rem 0.25rem rgba(0, 0, 0, 0.5);
+  letter-spacing: clamp(0.02em, 0.8vw, 0.04em);
+  -webkit-font-smoothing: antialiased;
+  font-weight: 700;
+  position: relative;
+  display: inline-block;
+  line-height: 1.1;
+  opacity: 0;
+  animation: titleReveal 1.2s var(--ease-out-expo) forwards;
+  max-width: 100%;
+  text-align: center;
+  margin-left: auto;
+  margin-right: auto;
+  will-change: transform, opacity, letter-spacing;
+}
+
+.title-modern::after {
+  content: '';
+  position: absolute;
+  bottom: -0.5rem;
+  left: 50%;
+  transform: translateX(-50%) scaleX(0);
+  width: min(60%, 17.5rem);
+  height: 1px;
+  background: var(--gold);
+  opacity: 0.7;
+  animation: lineReveal var(--transition-normal) var(--ease-out-expo) forwards 0.4s;
+  will-change: transform;
+}
+
+@keyframes titleReveal {
+  0% {
+    opacity: 0;
+    transform: translateY(clamp(0.625rem, 3vw, 1.25rem));
+    letter-spacing: clamp(0.06em, 2vw, 0.12em);
+  }
+  30% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+    letter-spacing: clamp(0.02em, 1vw, 0.04em);
+  }
+}
+
+@keyframes lineReveal {
+  from {
+    transform: translateX(-50%) scaleX(0);
+  }
+  to {
+    transform: translateX(-50%) scaleX(1);
+  }
+}
+
+/* Section transitions */
+.section-fade-in {
+  opacity: 0;
+  transform: translateY(1.25rem);
+  transition: all 0.6s ease-out;
+}
+
+.section-fade-in.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Logo animation */
+.logo-fade-in {
+  animation: logoFadeIn 0.5s ease-out forwards;
+  filter: drop-shadow(0 0 0.125rem rgba(255, 255, 255, 0.5));
+  will-change: transform, opacity;
+}
+
+@keyframes logoFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-0.625rem);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Restaurant image background effect */
+@keyframes kenburns {
+  0% {
+    transform: scale(1.02) translate(0);
+  }
+  100% {
+    transform: scale(1.08) translate(-1%, -1%);
+  }
+}
+
+/* Disable zoom effect on mobile */
+@media (max-width: 768px) {
+  #home .hero-background img {
+    animation: none !important;
+    transform: none !important;
+    will-change: auto;
+  }
+  
+  /* Disable hero section wallpaper animation when scrolling on mobile */
+  .hero-section .slide {
+    transition: opacity 0.8s ease-in-out !important;
+    animation: none !important;
+    transform: none !important;
+  }
+  
+  .hero-section .hero-background {
+    animation: none !important;
+    transform: none !important;
+  }
+}
+
+/* Desktop-only subtle zoom animation */
+@media (min-width: 769px) and (prefers-reduced-motion: no-preference) {
+  #home .hero-background img {
+    animation: subtle-zoom 30s ease-in-out alternate infinite;
+    animation-delay: 2s;
+    will-change: transform;
+  }
+}
+
+@keyframes subtle-zoom {
+  from {
+    transform: scale(1);
+  }
+  to {
+    transform: scale(1.05);
+  }
+}
+
+/* Enhanced floating arrow */
+.float-arrow {
+  animation: floatArrow 2s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+  filter: drop-shadow(0 0 0.5rem rgba(0, 0, 0, 0.7));
+  z-index: 30;
+  will-change: transform;
+}
+
+@keyframes floatArrow {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-0.75rem) scale(1.1);
+  }
+}
+
+/* Reduce animation for mobile */
+@media (max-width: 768px) {
+  .float-arrow {
+    animation: floatArrow 3s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+  }
+}
+
+/* Reduced motion preferences */
+@media (prefers-reduced-motion: reduce) {
+  .float-arrow {
+    animation: none;
+  }
+}
+
+/* Hero Section Styling */
+.hero-section {
+  position: relative;
+  height: 100vh;
+  height: 100dvh; /* Dynamic viewport height for mobile */
+  width: 100%;
+  overflow: hidden;
+  background-color: black;
+}
+
+.hero-content {
+  position: relative;
+  z-index: 10;
+  height: 100%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 0 1.25rem;
+}
+
+.hero-background {
+  position: absolute;
+  inset: 0;
+  background-color: black;
+}
+
+/* Optimize transitions for mobile */
+@media (max-width: 768px) {
+  * {
+    /* Disable hover effects on mobile for better performance */
+    &:hover {
+      transform: none !important;
+      transition: none !important;
+    }
+  }
+
+  .slide {
+    transition: opacity 0.5s ease-in-out;
+  }
+  
+  /* Ensure stable positions */
+  .hero-background, .slide, .hero-content {
+    transform: translateZ(0);
+    backface-visibility: hidden;
+    will-change: transform;
+  }
+}
+
+.slide {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  transition: opacity 1s ease-in-out;
+  will-change: opacity;
+}
+
+.slide.active {
+  opacity: 1;
+}
+
+.slide img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+}
+
+/* Overlay gradient for better text readability */
+.hero-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to bottom,
+    rgba(0, 0, 0, 0.7) 0%,
+    rgba(0, 0, 0, 0.4) 50%,
+    rgba(0, 0, 0, 0.7) 100%
+  );
+  z-index: 2;
+}
+
+/* Footer styling improvements */
+footer {
+  position: relative;
+  z-index: 50;
+}
+
+/* High contrast footer elements for accessibility */
+footer h3 {
+  text-shadow: 0 0.0625rem 0.1875rem rgba(0, 0, 0, 0.8);
+  letter-spacing: 0.03em;
+}
+
+/* Footer background and separator */
+footer::before {
+  content: '';
+  position: absolute;
+  top: -3.125rem;
+  left: 0;
+  right: 0;
+  height: 3.125rem;
+  background: linear-gradient(to top, rgba(10, 10, 10, 0.8), transparent);
+  pointer-events: none;
+}
+
+/* Mobile-specific styles */
+@media (max-width: 640px) {
+  .title-modern {
+    font-size: clamp(3rem, 10vw, 5rem) !important;
+    width: auto !important;
+    max-width: 100% !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+  }
+  
+  .title-modern + .title-modern {
+    font-size: clamp(1.5rem, 5vw, 3rem) !important;
+  }
+  
+  .btn-primary {
+    width: 100%;
+    max-width: 18.75rem;
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
+
+/* Improved accessibility for form elements */
+input, button, select, textarea {
+  @apply min-h-[3rem];
+}
+
+/* Better spacing for mobile menu items */
+.mobile-menu-content a,
+.mobile-menu-content button {
+  @apply my-2 py-3 px-4 w-full max-w-[18.75rem] mx-auto rounded-lg;
+}
+
+/* Improve mobile footer layout */
+@media (max-width: 768px) {
+  footer .grid {
+    gap: 2rem;
+  }
+  
+  footer .h-0.5 {
+    margin-bottom: 1.5rem;
+  }
+}
+
+/* Improved visibility for menu page with footer */
+.menu-page {
+  position: relative;
+  z-index: 1;
+}
+
+/* Improved menu page footer visibility */
+body {
+  min-height: 100vh;
+  min-height: 100dvh; /* Dynamic viewport height for mobile */
+  display: flex;
+  flex-direction: column;
+}
+
+#root {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Improved menu spacing on mobile */
+@media (max-width: 640px) {
+  .menu-card {
+    padding: 1rem;
+  }
+  
+  .menu-section h2 {
+    font-size: 1.5rem;
+  }
+  
+  .menu-card h3 {
+    font-size: 1.125rem;
+  }
+}
+
+/* Fix for iOS Safari 100vh issue with dynamic viewport height */
+.hero-section,
+.mobile-menu-overlay,
+.mobile-menu-content {
+  height: 100dvh;
+}
+
+/* Improve tap targets on mobile */
+@media (max-width: 768px) {
+  .mobile-menu-content a,
+  .mobile-menu-content button {
+    min-height: 3rem;
+    min-width: 3rem;
+    padding: 0.75rem !important;
+    margin: 0.25rem 0;
+  }
+  
+  .menu-card {
+    padding: 1.25rem;
+  }
+
+  /* Ensure touch targets are large enough */
+  .btn-primary,
+  .input-modern,
+  select,
+  input[type="date"],
+  a.social-link {
+    min-height: 3rem;
+    min-width: 3rem;
+  }
+}
+
+/* Better contrast for menu items on dark backgrounds */
+.menu-card h3 {
+  text-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.7);
+  @apply text-white/95;
+}
+
+.menu-card p {
+  text-shadow: 0 0.0625rem 0.125rem rgba(0, 0, 0, 0.5);
+  @apply text-white/85;
+}
+
+.menu-card .price {
+  text-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.7);
+  color: var(--gold);
+  font-weight: 700;
+  @apply tracking-wide;
+}
+
+/* Responsive spacing utilities */
+.responsive-gap {
+  gap: clamp(1rem, 4vw, 2rem);
+}
+
+.responsive-py {
+  padding-top: clamp(2rem, 6vw, 5rem);
+  padding-bottom: clamp(2rem, 6vw, 5rem);
+}
+
+.responsive-px {
+  padding-left: clamp(1rem, 4vw, 2rem);
+  padding-right: clamp(1rem, 4vw, 2rem);
+}
+
+/* Enhanced focus states for better accessibility */
+button:focus-visible,
+a:focus-visible,
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible {
+  outline: 0.125rem solid var(--gold);
+  outline-offset: 0.125rem;
+  box-shadow: 0 0 0 0.25rem rgba(181, 153, 92, 0.25);
+}
+
+/* Safe area insets for notched devices */
+@supports (padding: max(0px)) {
+  .safe-area-inset {
+    padding-left: max(1rem, env(safe-area-inset-left));
+    padding-right: max(1rem, env(safe-area-inset-right));
+    padding-bottom: max(1rem, env(safe-area-inset-bottom));
+    padding-top: max(0.5rem, env(safe-area-inset-top));
+  }
+}
+
+/* Enhance accessibility visuals */
+.high-contrast-text {
+  text-shadow: 0 0.0625rem 0.125rem rgba(0, 0, 0, 0.8);
+}
+
+/* Improve dark mode detection and application */
+@media (prefers-color-scheme: dark) {
+  .dark\:enhance-visibility {
+    color: rgba(255, 255, 255, 0.95);
+    text-shadow: 0 0.0625rem 0.125rem rgba(0, 0, 0, 0.5);
+  }
+}
+
+/* Adapts images to different screen sizes */
+.responsive-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Optimized spacing for content sections */
+.content-section {
+  padding: clamp(2rem, 8vw, 5rem) clamp(1rem, 4vw, 3rem);
+}
+
+/* Cards that adapt to screen size */
+.responsive-card {
+  padding: clamp(1rem, 5vw, 2rem);
+  margin-bottom: clamp(1rem, 3vw, 1.5rem);
+}
+
+/* Ensures images don't cause horizontal overflow */
+.img-container {
+  max-width: 100%;
+  overflow: hidden;
+}
+
+/* Enhanced keyboard navigation */
+a:focus-visible, 
+button:focus-visible {
+  outline: 0.125rem solid var(--gold);
+  outline-offset: 0.125rem;
+  position: relative;
+  z-index: 5;
+}
+
+/* Focus ring for menu items */
+.menu-card:focus-within {
+  box-shadow: 0 0 0 0.125rem var(--gold);
+}
+
+/* Animation for the centered language menu */
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes zoomIn {
+  from { 
+    opacity: 0; 
+    transform: scale(0.95) translateY(0.5rem); 
+  }
+  to { 
+    opacity: 1; 
+    transform: scale(1) translateY(0); 
+  }
+}
+
+.animate-fadeIn {
+  animation: fadeIn 0.3s ease-out forwards;
+}
+
+.animate-zoomIn {
+  animation: zoomIn 0.4s cubic-bezier(0.21, 1.02, 0.73, 1) forwards;
+}
+
+/* Prevents scrolling when modal is open */
+body.modal-open {
+  overflow: hidden !important;
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  touch-action: none;
+  -webkit-overflow-scrolling: none;
+}
+
+/* Centered language menu specific styles */
+.language-menu-overlay {
+  overscroll-behavior: contain;
+  touch-action: pan-y;
+}
+
+.language-menu-content {
+  max-height: calc(100vh - 8rem);
+  scrollbar-width: thin;
+  scrollbar-color: var(--gold) rgba(0,0,0,0.3);
+}
+
+.language-menu-content::-webkit-scrollbar {
+  width: 0.25rem;
+}
+
+.language-menu-content::-webkit-scrollbar-track {
+  background: rgba(0,0,0,0.3);
+  border-radius: 0.5rem;
+}
+
+.language-menu-content::-webkit-scrollbar-thumb {
+  background-color: var(--gold);
+  border-radius: 0.5rem;
+}
+
+/* Translations */
+html[lang="ar"] .language-menu-content {
+  direction: rtl;
+}
+
+/* Scrollable modal content styles */
+.modal-content-scrollable {
+  scrollbar-width: thin;
+  scrollbar-color: var(--gold) rgba(0,0,0,0.3);
+  overflow-y: auto;
+  max-height: calc(90vh - 6rem);
+  -webkit-overflow-scrolling: touch;
+}
+
+.modal-content-scrollable::-webkit-scrollbar {
+  width: 0.4rem;
+}
+
+.modal-content-scrollable::-webkit-scrollbar-track {
+  background: rgba(0,0,0,0.3);
+  border-radius: 0.5rem;
+}

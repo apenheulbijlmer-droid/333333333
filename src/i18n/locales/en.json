@@ -1,0 +1,63 @@
+{
+  "nav": {
+    "home": "Home",
+    "menu": "Menu",
+    "location": "Where we are",
+    "about": "About",
+    "contact": "Contact",
+    "reserve": "Reserve"
+  },
+  "reservation": {
+    "title": "Make a Reservation",
+    "description": "For a personal reservation, you can reach us by phone. Our staff is ready to assist you with all your requests.",
+    "onlineBooking": "Book Online"
+  },
+  "hero": {
+    "title": "Manhattan Food & Drinks",
+    "tagline": "",
+    "cta": "Book a Table"
+  },
+  "about": {
+    "title": "Our Story",
+    "content1": "In the heart of Manhattan, we craft extraordinary dining experiences that blend contemporary innovation with timeless elegance. Our passionate team of culinary artists creates unforgettable moments through exceptional cuisine and impeccable service.",
+    "content2": "Every dish tells a story, every ingredient carefully selected, every presentation thoughtfully crafted to elevate your dining experience to new heights."
+  },
+  "menu": {
+    "title": "Menu Highlights",
+    "appetizers": "Appetizers",
+    "mainCourse": "Main Course",
+    "dessert": "Dessert",
+    "dishes": {
+      "foieGras": "Truffle-infused Foie Gras",
+      "wagyu": "Wagyu Beef Tenderloin",
+      "souffle": "Gold Leaf Chocolate Soufflé"
+    }
+  },
+  "contact": {
+    "title": "Make a Reservation",
+    "form": {
+      "name": "Name",
+      "email": "Email",
+      "date": "Date",
+      "time": "Select time",
+      "submit": "Reserve Now"
+    }
+  },
+  "footer": {
+    "location": "Location",
+    "hours": "Hours",
+    "contact": "Contact",
+    "schedule": "Tuesday to Sunday: 10:00 - 22:00\nMonday: Closed",
+    "rights": "© {{year}} Manhattan Food & Drinks. All rights reserved."
+  },
+  "languages": {
+    "nl": "Nederlands",
+    "en": "English",
+    "tr": "Türkçe",
+    "ar": "العربية",
+    "es": "Español",
+    "selectLanguage": "Select language",
+    "close": "Close",
+    "error": "Failed to change language"
+  }
+}

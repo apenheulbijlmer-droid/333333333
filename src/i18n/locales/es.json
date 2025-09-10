@@ -1,0 +1,63 @@
+{
+  "nav": {
+    "home": "Inicio",
+    "menu": "Menú",
+    "location": "Dónde estamos",
+    "about": "Nosotros",
+    "contact": "Contacto",
+    "reserve": "Reservar"
+  },
+  "reservation": {
+    "title": "Hacer una Reserva",
+    "description": "Para una reserva personalizada, puede contactarnos por teléfono. Nuestro personal está listo para ayudarle con todas sus solicitudes.",
+    "onlineBooking": "Reservar en Línea"
+  },
+  "hero": {
+    "title": "Manhattan Food & Drinks",
+    "tagline": "",
+    "cta": "Reservar Mesa"
+  },
+  "about": {
+    "title": "Nuestra Historia",
+    "content1": "En el corazón de Manhattan, creamos experiencias gastronómicas extraordinarias que combinan la innovación contemporánea con la elegancia atemporal. Nuestro apasionado equipo de artistas culinarios crea momentos inolvidables a través de una cocina excepcional y un servicio impecable.",
+    "content2": "Cada plato cuenta una historia, cada ingrediente cuidadosamente seleccionado, cada presentación pensada para elevar su experiencia gastronómica a nuevas alturas."
+  },
+  "menu": {
+    "title": "Destacados del Menú",
+    "appetizers": "Entrantes",
+    "mainCourse": "Plato Principal",
+    "dessert": "Postres",
+    "dishes": {
+      "foieGras": "Foie Gras con Trufa",
+      "wagyu": "Solomillo de Wagyu",
+      "souffle": "Soufflé de Chocolate con Hoja de Oro"
+    }
+  },
+  "contact": {
+    "title": "Hacer una Reserva",
+    "form": {
+      "name": "Nombre",
+      "email": "Correo electrónico",
+      "date": "Fecha",
+      "time": "Seleccionar hora",
+      "submit": "Reservar Ahora"
+    }
+  },
+  "footer": {
+    "location": "Ubicación",
+    "hours": "Horario",
+    "contact": "Contacto",
+    "schedule": "Martes a Domingo: 10:00 - 22:00\nLunes: Cerrado",
+    "rights": "© {{year}} Manhattan Food & Drinks. Todos los derechos reservados."
+  },
+  "languages": {
+    "nl": "Nederlands",
+    "en": "English",
+    "tr": "Türkçe",
+    "ar": "العربية",
+    "es": "Español",
+    "selectLanguage": "Seleccionar idioma",
+    "close": "Cerrar",
+    "error": "Error al cambiar el idioma"
+  }
+}

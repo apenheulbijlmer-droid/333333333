@@ -1,0 +1,63 @@
+{
+  "nav": {
+    "home": "Ana Sayfa",
+    "menu": "Menü",
+    "location": "Neredeyiz",
+    "about": "Hakkımızda",
+    "contact": "İletişim",
+    "reserve": "Rezervasyon"
+  },
+  "reservation": {
+    "title": "Rezervasyon Yapın",
+    "description": "Kişisel rezervasyon için bizi telefonla arayabilirsiniz. Ekibimiz tüm taleplerinizde size yardımcı olmaya hazır.",
+    "onlineBooking": "Online Rezervasyon"
+  },
+  "hero": {
+    "title": "Manhattan Food & Drinks",
+    "tagline": "",
+    "cta": "Masa Rezervasyonu"
+  },
+  "about": {
+    "title": "Hikayemiz",
+    "content1": "Manhattan'ın kalbinde, çağdaş yeniliği zamansız zarafetle birleştiren olağanüstü yemek deneyimleri yaratıyoruz. Tutkulu şeflerimiz, istisnai mutfağımız ve kusursuz hizmetimizle unutulmaz anlar yaratıyor.",
+    "content2": "Her yemek bir hikaye anlatır, her malzeme özenle seçilir, her sunum yemek deneyiminizi yeni zirvelere taşımak için özenle hazırlanır."
+  },
+  "menu": {
+    "title": "Menü Öne Çıkanlar",
+    "appetizers": "Başlangıçlar",
+    "mainCourse": "Ana Yemekler",
+    "dessert": "Tatlılar",
+    "dishes": {
+      "foieGras": "Trüf Aromalı Kaz Ciğeri",
+      "wagyu": "Wagyu Dana Bonfile",
+      "souffle": "Altın Yapraklı Çikolatalı Sufle"
+    }
+  },
+  "contact": {
+    "title": "Rezervasyon Yapın",
+    "form": {
+      "name": "İsim",
+      "email": "E-posta",
+      "date": "Tarih",
+      "time": "Saat seçin",
+      "submit": "Rezervasyon Yap"
+    }
+  },
+  "footer": {
+    "location": "Konum",
+    "hours": "Çalışma Saatleri",
+    "contact": "İletişim",
+    "schedule": "Salı - Pazar: 10:00 - 22:00\nPazartesi: Kapalı",
+    "rights": "© {{year}} Manhattan Food & Drinks. Tüm hakları saklıdır."
+  },
+  "languages": {
+    "nl": "Nederlands",
+    "en": "English",
+    "tr": "Türkçe",
+    "ar": "العربية",
+    "es": "Español",
+    "selectLanguage": "Dil seçin",
+    "close": "Kapat",
+    "error": "Dil değiştirilemedi"
+  }
+}
